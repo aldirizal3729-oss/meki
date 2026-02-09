@@ -1,0 +1,35 @@
+https://github.com/JishnuTheGamer/vps123
+
+bash <(curl -s https://ptero.jishnu.fun)
+
+bash <(curl -s https://vps1.jishnu.fun)
+
+import time
+from pathlib import Path
+
+# Menggunakan path absolut untuk memastikan file dibuat di folder proyek
+file_path = Path.cwd() / "test_idx.txt"
+
+print(f"Bekerja di: {file_path}")
+print("Tekan Ctrl+C untuk berhenti.")
+
+try:
+    while True:
+        # 1. Membuat file
+        file_path.write_text("Halo dari Google IDX!")
+        print(f"[{time.strftime('%H:%M:%S')}] File DIBUAT")
+        
+        time.sleep(1) # Delay 1 detik
+
+        # 2. Menghapus file
+        if file_path.exists():
+            file_path.unlink()
+            print(f"[{time.strftime('%H:%M:%S')}] File DIHAPUS")
+        
+        time.sleep(1) # Delay sebelum loop berikutnya
+except KeyboardInterrupt:
+    print("\nLoop dihentikan.")
+except PermissionError:
+    print("\nError: Izin ditolak. Coba jalankan di folder lain.")
+except Exception as e:
+    print(f"\nTerjadi kesalahan: {e}")
